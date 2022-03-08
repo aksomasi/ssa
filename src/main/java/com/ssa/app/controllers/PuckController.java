@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssa.app.entities.PuckFamily;
 import com.ssa.app.entities.User;
+import com.ssa.app.repos.PuckDataRepo;
 import com.ssa.app.services.PuckService;
 
 @RestController
@@ -15,6 +16,9 @@ public class PuckController {
 
 	@Autowired
 	PuckService puckService;
+	
+	@Autowired
+	PuckDataRepo puckDataRepo;
 	
 	@GetMapping("test")
 	public String test() {
@@ -29,5 +33,10 @@ public class PuckController {
 	@GetMapping("getUsers")
 	public List<User> getUsers() {
 		return puckService.getUsers();
+	}
+	
+	@GetMapping("getPucks")
+	public List<PuckData>  getPucks() {
+		return puckDataRepo.doSomeQuery();
 	}
 }
